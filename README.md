@@ -1,7 +1,7 @@
-# 🎓 EDSL
-### Entrepreneurship Development Student Lab
+# 🎓 CampusSwap
+### Student Marketplace Platform
 
-> EDSL is a college-focused marketplace that allows students to **buy, sell, exchange and donate** used items such as books, calculators, electronics, hostel items and other useful products.
+> CampusSwap is a college-focused marketplace that allows students to **buy, sell, exchange and donate** used items such as books, calculators, electronics, hostel items and other useful products.
 
 ---
 
@@ -22,9 +22,9 @@
 
 ## A. Project Overview
 
-**EDSL (Entrepreneurship Development Student Lab)** is a dedicated student marketplace platform built for college communities. It bridges the gap between students who have items they no longer need and students who need those items — creating a sustainable, affordable, and trustworthy campus economy.
+**CampusSwap** is a dedicated student marketplace platform built for college communities. It bridges the gap between students who have items they no longer need and students who need those items — creating a sustainable, affordable, and trustworthy campus economy.
 
-Whether it's textbooks from last semester, a calculator no longer in use, or hostel essentials, EDSL makes it easy to list, discover, and transact — all within a verified student community.
+Whether it's textbooks from last semester, a calculator no longer in use, or hostel essentials, CampusSwap makes it easy to list, discover, and transact — all within a verified student community.
 
 ---
 
@@ -50,7 +50,7 @@ This makes buying and selling items **slow, unorganized and less trustworthy**.
 
 > 🎯 To create a **safe and affordable student marketplace** where college students can easily buy, sell, exchange and donate items within their campus community.
 
-We envision EDSL becoming the go-to platform for every college student — reducing waste, saving money, and building a connected campus community.
+We envision CampusSwap becoming the go-to platform for every college student — reducing waste, saving money, and building a connected campus community.
 
 ---
 
@@ -106,7 +106,7 @@ We envision EDSL becoming the go-to platform for every college student — reduc
 
 ## F. Future Scope
 
-EDSL can later be expanded with:
+CampusSwap can later be expanded with:
 
 - 🤖 **AI-based product recommendations**
 - 📍 **Campus-based location filtering**
@@ -147,7 +147,7 @@ Deployment
 
 ## H. Authentication & Security
 
-EDSL uses a robust, multi-layered security approach:
+CampusSwap uses a robust, multi-layered security approach:
 
 | Layer | Technology | Purpose |
 |---|---|---|
@@ -163,7 +163,7 @@ EDSL uses a robust, multi-layered security approach:
 ## I. Project Architecture
 
 ```
-                    EDSL
+                 CAMPUSSWAP
                      │
         ┌────────────┴────────────┐
         │                         │
@@ -267,7 +267,7 @@ Express.js Backend
 ## 📁 Project Structure
 
 ```
-EDSL/
+CampusSwap/
 │
 ├── README.md
 ├── docs/
@@ -297,8 +297,8 @@ EDSL/
 
 ```bash
 # Clone the repository
-git clone https://github.com/atharva1062/campus-swap.git
-cd campus-swap
+git clone https://github.com/atharva1062/EDSL.git
+cd EDSL
 
 # Install backend dependencies
 cd backend
@@ -314,7 +314,7 @@ npm install
 Create a `.env` file in the `backend/` folder:
 
 ```env
-DATABASE_URL="postgresql://user:password@localhost:5432/edsl"
+DATABASE_URL="postgresql://user:password@localhost:5432/campusswap"
 JWT_SECRET="your_jwt_secret_key"
 PORT=5000
 ```
@@ -335,6 +335,6 @@ cd frontend && npm start
 
 **Made with ❤️ for students, by students**
 
-*EDSL — Entrepreneurship Development Student Lab*
+*CampusSwap — Swap Smart, Save More*
 
 </div>

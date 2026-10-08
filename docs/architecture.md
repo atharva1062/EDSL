@@ -3,7 +3,7 @@
 ## System Architecture
 
 ```
-                    EDSL
+                 CAMPUSSWAP
                      │
         ┌────────────┴────────────┐
         │                         │
@@ -84,7 +84,7 @@ Express.js Backend
 
 ## API Design
 
-EDSL follows RESTful API conventions:
+CampusSwap follows RESTful API conventions:
 
 | Method | Pattern | Example |
 |---|---|---|

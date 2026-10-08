@@ -43,4 +43,4 @@ Today, students rely on highly informal and inefficient channels:
 
 ## Our Solution
 
-**EDSL** — a dedicated, verified, and organized student marketplace that solves all of the above pain points in one platform.
+**CampusSwap** — a dedicated, verified, and organized student marketplace that solves all of the above pain points in one platform.

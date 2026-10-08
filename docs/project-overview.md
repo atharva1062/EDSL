@@ -1,8 +1,8 @@
 # 📖 Project Overview
 
-## What is EDSL?
+## What is CampusSwap?
 
-**EDSL (Entrepreneurship Development Student Lab)** is a college-focused student marketplace platform that enables students to buy, sell, exchange, and donate used items within their campus community.
+**CampusSwap** is a college-focused student marketplace platform that enables students to buy, sell, exchange, and donate used items within their campus community.
 
 ## Who is it for?
 
@@ -22,9 +22,9 @@
 | 👕 Clothing | Lab coats, uniforms |
 | 🔧 Tools | Instruments, project kits |
 
-## Why EDSL?
+## Why CampusSwap?
 
-Unlike general marketplaces (OLX, Facebook Marketplace), EDSL is:
+Unlike general marketplaces (OLX, Facebook Marketplace), CampusSwap is:
 
 - **Campus-specific** — only verified students can join
 - **Trustworthy** — college email verification

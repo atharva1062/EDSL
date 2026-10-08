@@ -1,6 +1,6 @@
 # 🗄️ Database — Schema & Migrations
 
-This folder contains the database schema, migration files, and seed data for EDSL.
+This folder contains the database schema, migration files, and seed data for CampusSwap.
 
 ## Structure
 
@@ -14,10 +14,10 @@ database/
 ## Setup
 
 1. Make sure PostgreSQL is running
-2. Create a database named `edsl`
+2. Create a database named `campusswap`
 3. Add `DATABASE_URL` to your `.env` file:
    ```
-   DATABASE_URL="postgresql://user:password@localhost:5432/edsl"
+   DATABASE_URL="postgresql://user:password@localhost:5432/campusswap"
    ```
 4. Run Prisma migrations:
    ```bash
