@@ -1,0 +1,164 @@
+// Prisma Schema for CampusSwap
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  name         String
+  email        String   @unique
+  password     String
+  collegeId    String?
+  phone        String?
+  avatar       String?
+  bio          String?
+  campus       String?  @default("Main Campus")
+  role         String   @default("STUDENT") // STUDENT, ADMIN
+  isVerified   Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  listings        Listing[]
+  buyerPurchases  Transaction[]   @relation("BuyerTransactions")
+  sellerSales     Transaction[]   @relation("SellerTransactions")
+  reviewsGiven    Review[]        @relation("ReviewsGiven")
+  reviewsReceived Review[]        @relation("ReviewsReceived")
+  notifications   Notification[]
+  reportsFiled    Report[]        @relation("Reporter")
+  sentMessages    Message[]       @relation("SentMessages")
+  receivedMessages Message[]      @relation("ReceivedMessages")
+  savedItems      SavedItem[]
+}
+
+model Category {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique
+  slug        String    @unique
+  icon        String?
+  description String?
+  listings    Listing[]
+}
+
+model Listing {
+  id              Int           @id @default(autoincrement())
+  sellerId        Int
+  categoryId      Int
+  title           String
+  description     String
+  price           Float         @default(0.0)
+  originalPrice   Float?
+  condition       String        @default("GOOD") // BRAND_NEW, LIKE_NEW, GOOD, FAIR
+  type            String        @default("SELL") // SELL, RENT, SWAP
+  status          String        @default("AVAILABLE") // AVAILABLE, RESERVED, SOLD, RENTED, SWAPPED
+  imageUrl        String?
+  additionalImages String?      // JSON string array of extra image urls
+  pickupLocation  String?       @default("Campus Library / Student Center")
+  rentDuration    String?       // e.g. "per day", "per week", "per semester"
+  swapPreferences String?       // e.g. "Looking for Scientific Calculator or Chem Book"
+  views           Int           @default(0)
+  isFeatured      Boolean       @default(false)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  seller          User          @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  category        Category      @relation(fields: [categoryId], references: [id])
+  transactions    Transaction[]
+  reports         Report[]
+  savedBy         SavedItem[]
+  messages        Message[]
+}
+
+model Transaction {
+  id              Int           @id @default(autoincrement())
+  listingId       Int
+  buyerId         Int
+  sellerId        Int
+  type            String        // BUY, RENT, SWAP
+  amount          Float         @default(0.0)
+  swapItemDetails String?       // For SWAP type
+  rentDays        Int?          // For RENT type
+  meetLocation    String?
+  status          String        @default("PENDING") // PENDING, ACCEPTED, REJECTED, COMPLETED, CANCELLED
+  note            String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  listing         Listing       @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  buyer           User          @relation("BuyerTransactions", fields: [buyerId], references: [id])
+  seller          User          @relation("SellerTransactions", fields: [sellerId], references: [id])
+  review          Review?
+}
+
+model Review {
+  id            Int         @id @default(autoincrement())
+  reviewerId    Int
+  revieweeId    Int
+  transactionId Int         @unique
+  rating        Int         @default(5)
+  comment       String?
+  createdAt     DateTime    @default(now())
+
+  reviewer      User        @relation("ReviewsGiven", fields: [reviewerId], references: [id])
+  reviewee      User        @relation("ReviewsReceived", fields: [revieweeId], references: [id])
+  transaction   Transaction @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  title     String
+  message   String
+  type      String   @default("SYSTEM") // TRANSACTION, MESSAGE, REVIEW, SYSTEM
+  link      String?
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Report {
+  id          Int      @id @default(autoincrement())
+  reporterId  Int
+  listingId   Int
+  reason      String   // INAPPROPRIATE, SPAM, FRAUD, COUNTERFEIT, OTHER
+  description String?
+  status      String   @default("PENDING") // PENDING, REVIEWED, RESOLVED, DISMISSED
+  adminNotes  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  reporter    User     @relation("Reporter", fields: [reporterId], references: [id])
+  listing     Listing  @relation(fields: [listingId], references: [id], onDelete: Cascade)
+}
+
+model Message {
+  id          Int      @id @default(autoincrement())
+  senderId    Int
+  receiverId  Int
+  listingId   Int?
+  content     String
+  isRead      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  sender      User     @relation("SentMessages", fields: [senderId], references: [id])
+  receiver    User     @relation("ReceivedMessages", fields: [receiverId], references: [id])
+  listing     Listing? @relation(fields: [listingId], references: [id])
+}
+
+model SavedItem {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  listingId Int
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  listing   Listing  @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, listingId])
+}

@@ -1,0 +1,12 @@
+node_modules
+.env
+.DS_Store
+dist
+dist-ssr
+*.local
+dev.db
+dev.db-journal
+backend/dev.db
+backend/dev.db-journal
+backend/uploads/*
+!backend/uploads/.gitkeep
